@@ -39,16 +39,17 @@ Options:
 
 ## TODO
 
-* Add decoding/decryption functions.
-* Refactor code into modules.
-* Add copy to clipboard option.
+- [ ] Add decoding/decryption functions.
+- [ ] Refactor code into modules.
+- [ ] Add copy to clipboard option.
+- [ ] Add Windows support
 
 ## Contributing
 
-1. [Fork](https://github.com/csigitam/csigitam.github.io/fork) it
-2. Create your feature branch (`git checkout -b feature/yourfeature`)
-3. Commit your changes (`git commit -am 'Add some yourfeature'`)
-4. Push to the branch (`git push origin feature/yourfeature`)
+1. [Fork](https://github.com/AjitZero/Scram-CLI/fork) it.
+2. Create your feature branch. (`git checkout -b feature/yourfeature`)
+3. Commit your changes. (`git commit -am 'Add some yourfeature'`)
+4. Push to the branch. (`git push origin feature/yourfeature`)
 5. Create a new Pull Request.
 
 > Please [contact me](#meta) before submitting a Pull Request since I won't be accepting PRs without verifying its validity.
