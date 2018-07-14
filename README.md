@@ -3,7 +3,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://forthebadge.com)
 
-A command-line utility to encode messages, built with [Click](https://github.com/pallets/click) (Python 3).
+A command-line utility to encode & encrypt messages, built with [Click](https://github.com/pallets/click) (Python 3).
 WIP.
 
 ## Development Setup
@@ -25,15 +25,23 @@ To exit the Virtual Environment, simply enter `deactivate`.
 ```
 Usage: scram [OPTIONS]
 
-  scram encodes the entered string depending on chosen hash-type.
-  Ignores non-alphabets.
+  scram encodes/encrypts the entered string depending on the chosen
+  algorithm. Ignores non-alphabets.
 
 Options:
-  --hash-type [caeser|reverse]  Encoding algorithm
-  --help                        Show this message and exit.
+  -h, --hash-type [caeser|reverse]
+                                  Choose algorithm.
+  -v, --version                   Show current version.
+  --help                          Show this message and exit.
 
 ```
 
+
+## TODO
+
+* Add decoding/decryption functions.
+* Refactor code into modules.
+* Add copy to clipboard option.
 
 ## Contributing
 
