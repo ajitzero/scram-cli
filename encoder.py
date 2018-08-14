@@ -1,12 +1,55 @@
 import click
+import string
 
-def encoder(msg, hash_type):
+def calc(MSG, hash_type):
     """Returns encoded message"""
 
     # Convert message to list
-    result = [elem for elem in msg]
+    result = [elem for elem in MSG]
 
-    if hash_type == 'caeser':
+    if hash_type == 'affine':
+        """Apply Affine Cipher Algorithm"""
+
+        # Input cipher offset
+        key1 = click.prompt("Enter key 1", type=int)
+        key2 = click.prompt("Enter key 2", type=int)
+
+        result = ''
+        for elem in MSG:
+            if elem == ' ':
+                result += elem
+            else:
+                result += chr((((key1 * (ord(elem) - ord('A'))) + key2) % 26) + ord('A'))
+                
+        return result
+
+    elif hash_type == 'ascii':
+        """Convert every character to ASCII representation"""
+        
+        result = [str(ord(elem)) for elem in MSG]
+        return ' '.join(result) # Space separated
+
+    elif hash_type == 'atbash':
+        """Apply Atbash Cipher Algorithm"""
+
+        domain = string.ascii_lowercase[::-1]
+
+        MSG = MSG.upper()
+        result = ''
+        for elem in MSG:
+            if elem == ' ':
+                result += elem
+            else:
+                result += domain[ord(elem) - 65]
+
+        return result
+        
+    elif hash_type == 'binary':
+        """Convert every character to binary representation"""
+        result = [str(bin(ord(elem))[2:]) for elem in MSG]
+        return ' '.join(result) # Space separated
+
+    elif hash_type == 'caeser':
         """Implement Caeser Cipher Algorithm with offset"""
 
         # Input cipher offset
@@ -62,12 +105,89 @@ def encoder(msg, hash_type):
 
         return ''.join(result)
 
+    elif hash_type == 'morse':
+        """Apply Substitution for morse code Algorithm"""
+
+        # Store morse code values
+        MORSE = {'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','1':'.----', '2':'..---', '3':'...--', '4':'....-', '5':'.....', '6':'-....', '7':'--...', '8':'---..', '9':'----.', '0':'-----', ', ':'--..--', '.':'.-.-.-', '?':'..--..', '/':'-..-.', '-':'-....-', '(':'-.--.', ')':'-.--.-', ' ':'/' }
+
+        result_new = []
+        for elem in result:
+
+            # Convert to uppercase
+            new_elem = elem.upper()
+            if new_elem in MORSE:
+                result_new.append(MORSE[new_elem])
+            else:
+                raise ValueError("Error: " + str(elem) + " not supported in morse code.")
+
+        return ' '.join(result_new)
+
+    elif hash_type == 'polybius-square':
+        """Apply Polybius Square Cipher Algorithm"""
+
+        MSG = MSG.upper()
+        result = ""
+        for elem in MSG:
+
+            row = (ord(elem) - ord('A')) // 5 + 1
+            col = (ord(elem) - ord('A')) % 5 + 1
+
+            if elem == 'K':
+                row -= 1
+                col = 6 - col
+
+            elif ord(elem) >= ord('J'):
+                if col == 1:
+                    row -= 1
+                    col = 6 
+                col -= 1
+            result += str(row) + str(col)
+
+        return ''.join(result)
+
     elif hash_type == 'reverse':
         """Apply Simple Reversal Algorithm"""
 
-        return ''.join(reversed(result))
+        return ''.join(result[::-1])
 
-    # Just in case
+    elif hash_type == 'reverse-words':
+        """Reverse only words, in-place"""
+
+        result = [str(''.join(elem[::-1])) for elem in ''.join(result).split()]
+        return ' '.join(result)
+
+    elif hash_type == 'vignere':
+        """Reverse only words, in-place"""
+
+        # Input cipher key
+        key = click.prompt("Enter key", type=str).lower()
+        key = ''.join(key.strip().split())
+
+        result_new = ""
+        domain = string.ascii_lowercase
+        positions = [domain.find(elem) for elem in key]
+        lenp = len(positions)
+
+        status = 0
+        for elem in MSG:
+            if elem == " ":
+                result_new += elem
+
+            else:
+                if status >= lenp:
+                    status = 0
+                current_pos = positions[status] + domain.find(elem)
+
+                if current_pos > 25:
+                  current_pos -= 26
+
+                result_new += domain[current_pos]
+                status += 1
+
+        return ''.join(result_new)
+
     else:
-        click.echo("Error: Unsupported option.")
-        pass
+        """Return original string"""
+
+        return ''.join(result)

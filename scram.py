@@ -1,10 +1,20 @@
 import click
+import pyperclip
 import encoder
 
 # Supported functions
 CHOICES = [
+    'affine',
+    'ascii',
+    'atbash',
+    'binary',
     'caeser',
-    'reverse'
+    'morse',
+    'none',
+    'polybius-square',
+    'reverse',
+    'reverse-words',
+    'vignere'
 ]
 
 # Driver function
@@ -14,15 +24,14 @@ CHOICES = [
 def cli(version, hash_type):
     """scram encodes/encrypts the entered string depending on the chosen algorithm. Ignores non-alphabets."""
 
-    # print(type(hash_type), hash_type)
     if len(version) > 0 and version[0]:
         click.echo("Scram CLI v.0.1")
 
     else:
-        if hash_type is None:
+        if hash_type is None or not len(hash_type):
 
             # Show menu
-            click.echo("Select [--hash-type] option: " + ", ".join(CHOICES))
+            click.echo("Select [-h, --hash-type] option: " + ", ".join(CHOICES))
 
         else:
             
@@ -34,12 +43,20 @@ def cli(version, hash_type):
             ORIGINAL_MSG = click.prompt("Enter your message to be encoded", type=str).strip()
 
             # Apply handler function
-            ENCODED_MSG = encoder.encoder(ORIGINAL_MSG, hash_type)
+            ENCODED_MSG = encoder.calc(ORIGINAL_MSG, hash_type)
 
             # Display encoded message
             display(ENCODED_MSG)
-            
-def display(msg):
+
+# Components
+def display(MSG):
     """Displays the result"""
 
-    click.echo("\n" + "Output: " + msg + "\n")
+    click.echo("Output: " + MSG)
+
+    # Copy to clipboard
+    if click.prompt("Copy result to clipboard? [y|n]", type=str).strip().lower() in "yes":
+        pyperclip.copy(MSG)
+        click.echo("Copied to clipboard successfully.")
+    else:
+        click.echo("Command terminated normally.")

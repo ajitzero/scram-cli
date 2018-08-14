@@ -1,26 +1,39 @@
 # Scram CLI
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://forthebadge.com)
+![Status: Completed](https://img.shields.io/badge/Status-Completed-brightgreen.svg)
 
-A command-line utility to encode & encrypt messages, built with [Click](https://github.com/pallets/click) (Python 3).
-WIP.
+A command-line utility to encode messages, built with [Click](https://github.com/pallets/click) (Python 3).
+
+> This project is created for learning about command-line application development and practicing the implementation of encoding algorithms. **This project is NOT meant for production and hasn't been tested thoroughly.**
+
+## Installation
+
+```sh
+
+git clone git@github.com:AjitZero/Scram-CLI.git
+cd Scram-CLI
+pip install .
+
+```
 
 ## Development Setup
 
-Only Linux supported for now (Tested on Ubuntu 18.04 LTS):
+Tested on `Ubuntu 18.04 LTS` and `Windows 10`.
 
 ```sh
+
 git clone git@github.com:AjitZero/Scram-CLI.git
 cd Scram-CLI
 python3 -m venv env
 source env/bin/activate
 pip install --editable .
+
 ```
 
 To exit the Virtual Environment, simply enter `deactivate`.
 
-## Usage example
+## Documentation
 
 ```
 Usage: scram [OPTIONS]
@@ -29,20 +42,31 @@ Usage: scram [OPTIONS]
   algorithm. Ignores non-alphabets.
 
 Options:
-  -h, --hash-type [caeser|reverse]
+  -h, --hash-type [ascii|binary|caeser|morse|none|reverse|reverse-words|vignere]
                                   Choose algorithm.
   -v, --version                   Show current version.
   --help                          Show this message and exit.
 
 ```
 
+## Examples
 
-## TODO
+```sh
 
-- [ ] Add decoding/decryption functions.
-- [ ] Refactor code into modules.
-- [ ] Add copy to clipboard option.
-- [ ] Add Windows support
+$ scram -h caeser
+Enter your message to be encoded: AjitZero
+Enter offset: 5
+Output: FonyEjwt
+Copy result to clipboard? [y|n]: y
+Copied to clipboard successfully.
+
+$ scram -h morse
+Enter your message to be encoded: Ajit Zero
+Output: .- .--- .. - / --.. . .-. ---
+Copy result to clipboard? [y|n]: n
+Command terminated normally.
+
+```
 
 ## Contributing
 
@@ -52,10 +76,22 @@ Options:
 4. Push to the branch. (`git push origin feature/yourfeature`)
 5. Create a new Pull Request.
 
-> Please [contact me](#meta) before submitting a Pull Request since I won't be accepting PRs without verifying its validity.
+> Please [raise an issue](https://github.com/AjitZero/Scram-CLI/issues/new) or [contact me](#meta) before submitting a Pull Request.
+
+## Resources
+
+| Topic | Reference | Link |
+| --- | --- | --- |
+| Affine cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Affine_cipher) |
+| ASCII code | Wikipedia | [Source](https://en.wikipedia.org/wiki/ASCII) |
+| Atbash cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Affine_cipher) |
+| Caesar cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Caesar_cipher) |
+| Morse code | GeeksForGeeks | [Source](https://www.geeksforgeeks.org/morse-code-translator-python/) |
+| Polybius Square | Wikipedia | [Source](https://en.wikipedia.org/wiki/Polybius_square) |
+| Vigenère cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Vigenère_cipher) |
 
 ## Meta
 
-Ajit Panigrahi – [@AjitZero](https://github.com/AjitZero) – Ping me on [Twitter](https://twitter.com/AjitZero) or [Email me](mailto:ajitzero@gmail.com) for any queries
+Ajit Panigrahi – [@AjitZero](https://github.com/AjitZero) – Ping me on [Twitter](https://twitter.com/AjitZero) or [Email me](mailto:ajitzero@gmail.com) for any queries.
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the [MIT License](https://opensource.org/licenses/MIT). See [`LICENSE`](https://github.com/AjitZero/Scram-CLI/blob/master/LICENSE) for more information.
