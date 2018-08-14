@@ -84,7 +84,7 @@ Command terminated normally.
 | --- | --- | --- |
 | Affine cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Affine_cipher) |
 | ASCII code | Wikipedia | [Source](https://en.wikipedia.org/wiki/ASCII) |
-| Atbash cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Affine_cipher) |
+| Atbash cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Atbash_cipher) |
 | Caesar cipher | Wikipedia | [Source](https://en.wikipedia.org/wiki/Caesar_cipher) |
 | Morse code | GeeksForGeeks | [Source](https://www.geeksforgeeks.org/morse-code-translator-python/) |
 | Polybius Square | Wikipedia | [Source](https://en.wikipedia.org/wiki/Polybius_square) |
