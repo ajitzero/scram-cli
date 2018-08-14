@@ -36,13 +36,14 @@ To exit the Virtual Environment, simply enter `deactivate`.
 ## Documentation
 
 ```
+
 Usage: scram [OPTIONS]
 
   scram encodes/encrypts the entered string depending on the chosen
   algorithm. Ignores non-alphabets.
 
 Options:
-  -h, --hash-type [ascii|binary|caeser|morse|none|reverse|reverse-words|vignere]
+  -h, --hash-type [affine|ascii|atbash|binary|caeser|morse|none|polybius-square|reverse|reverse-words|vignere]
                                   Choose algorithm.
   -v, --version                   Show current version.
   --help                          Show this message and exit.
