@@ -3,10 +3,10 @@ from setuptools import setup
 setup(
     name="scram",
     version='1.0',
-    py_modules=['scram'],
+    py_modules=['scram', 'encoder'],
     install_requires=[
         'Click',
-        'pyperclip',
+        'Pyperclip',
     ],
     entry_points='''
         [console_scripts]

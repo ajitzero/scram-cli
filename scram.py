@@ -25,7 +25,7 @@ def cli(version, hash_type):
     """scram encodes/encrypts the entered string depending on the chosen algorithm. Ignores non-alphabets."""
 
     if len(version) > 0 and version[0]:
-        click.echo("Scram CLI v.0.1")
+        click.echo("Scram CLI v.1.0")
 
     else:
         if hash_type is None or not len(hash_type):
