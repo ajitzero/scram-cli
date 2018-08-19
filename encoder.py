@@ -4,7 +4,7 @@ import string
 def calc(MSG, hash_type):
     """Returns encoded message"""
 
-    # Convert message to list
+    # Preprocess message to list
     result = [elem for elem in MSG]
 
     if hash_type == 'affine':
@@ -27,16 +27,15 @@ def calc(MSG, hash_type):
         """Convert every character to ASCII representation"""
         
         result = [str(ord(elem)) for elem in MSG]
-        return ' '.join(result) # Space separated
+        return ' '.join(result)
 
     elif hash_type == 'atbash':
         """Apply Atbash Cipher Algorithm"""
 
         domain = string.ascii_lowercase[::-1]
 
-        MSG = MSG.upper()
         result = ''
-        for elem in MSG:
+        for elem in MSG.upper():
             if elem == ' ':
                 result += elem
             else:
@@ -46,8 +45,9 @@ def calc(MSG, hash_type):
         
     elif hash_type == 'binary':
         """Convert every character to binary representation"""
+
         result = [str(bin(ord(elem))[2:]) for elem in MSG]
-        return ' '.join(result) # Space separated
+        return ' '.join(result)
 
     elif hash_type == 'caeser':
         """Implement Caeser Cipher Algorithm with offset"""
@@ -63,11 +63,8 @@ def calc(MSG, hash_type):
         if offset_sign == '-':
             offset *= (-1)
 
-        # Storing ASCII values for range limits
-        v_a = ord('a')
-        v_A = ord('A')
-        v_z = ord('z')
-        v_Z = ord('Z')
+        # Caching ASCII values for range limits
+        v_a, v_A, v_z, v_Z = ord('a'), ord('A'), ord('z'), ord('Z')
 
         for i in range(len(result)):
 
@@ -126,9 +123,8 @@ def calc(MSG, hash_type):
     elif hash_type == 'polybius-square':
         """Apply Polybius Square Cipher Algorithm"""
 
-        MSG = MSG.upper()
         result = ""
-        for elem in MSG:
+        for elem in MSG.upper():
 
             row = (ord(elem) - ord('A')) // 5 + 1
             col = (ord(elem) - ord('A')) % 5 + 1

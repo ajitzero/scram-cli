@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="scram",
-    version='0.1',
+    version='1.0',
     py_modules=['scram'],
     install_requires=[
         'Click',
@@ -11,6 +11,5 @@ setup(
     entry_points='''
         [console_scripts]
         scram=scram:cli
-        scramx=scramx:cli
     ''',
 )
