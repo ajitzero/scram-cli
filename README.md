@@ -1,7 +1,6 @@
 # Scram CLI
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
-![Status: Completed](https://img.shields.io/badge/Status-Completed-brightgreen.svg)
 
 A command-line utility to encode messages, built with [Click](https://github.com/pallets/click) (Python 3).
 
@@ -71,13 +70,13 @@ Command terminated normally.
 
 ## Contributing
 
+> All existing encoding algorithms require a corresponding **decoder** function. Have at it if you're interested!
+
 1. [Fork](https://github.com/AjitZero/Scram-CLI/fork) it.
 2. Create your feature branch. (`git checkout -b feature/yourfeature`)
 3. Commit your changes. (`git commit -am 'Add some yourfeature'`)
 4. Push to the branch. (`git push origin feature/yourfeature`)
-5. Create a new Pull Request.
-
-> Please [raise an issue](https://github.com/AjitZero/Scram-CLI/issues/new) or [contact me](#meta) before submitting a Pull Request.
+5. Create a new Pull Request and link an [issue](https://github.com/AjitZero/Scram-CLI/issues/new) with it.
 
 ## Resources
 
