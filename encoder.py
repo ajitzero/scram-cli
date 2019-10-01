@@ -153,37 +153,7 @@ def calc(MSG, hash_type):
         result = [str(''.join(elem[::-1])) for elem in ''.join(result).split()]
         return ' '.join(result)
 
-    elif hash_type == 'vignere':
-        """Reverse only words, in-place"""
-
-        # Input cipher key
-        key = click.prompt("Enter key", type=str).lower()
-        key = ''.join(key.strip().split())
-
-        result_new = ""
-        domain = string.ascii_lowercase
-        positions = [domain.find(elem) for elem in key]
-        lenp = len(positions)
-
-        status = 0
-        for elem in MSG:
-            if elem == " ":
-                result_new += elem
-
-            else:
-                if status >= lenp:
-                    status = 0
-                current_pos = positions[status] + domain.find(elem)
-
-                if current_pos > 25:
-                  current_pos -= 26
-
-                result_new += domain[current_pos]
-                status += 1
-
-        return ''.join(result_new)
-    
-     elif hash_type == 'rot13':
+    elif hash_type == 'rot13':
         """Implement Rotation by 13 Algorithm """
 
         # Input cipher offset
@@ -235,8 +205,38 @@ def calc(MSG, hash_type):
                 pass
 
         return ''.join(result)
+    
+    elif hash_type == 'vignere':
+        """Reverse only words, in-place"""
 
+        # Input cipher key
+        key = click.prompt("Enter key", type=str).lower()
+        key = ''.join(key.strip().split())
 
+        result_new = ""
+        domain = string.ascii_lowercase
+        positions = [domain.find(elem) for elem in key]
+        lenp = len(positions)
+
+        status = 0
+        for elem in MSG:
+            if elem == " ":
+                result_new += elem
+
+            else:
+                if status >= lenp:
+                    status = 0
+                current_pos = positions[status] + domain.find(elem)
+
+                if current_pos > 25:
+                  current_pos -= 26
+
+                result_new += domain[current_pos]
+                status += 1
+
+        return ''.join(result_new)
+    
+     
 
     else:
         """Return original string"""
