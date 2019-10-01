@@ -14,6 +14,7 @@ CHOICES = [
     'polybius-square',
     'reverse',
     'reverse-words',
+    'rot13',
     'vignere'
 ]
 
