@@ -182,8 +182,66 @@ def calc(MSG, hash_type):
                 status += 1
 
         return ''.join(result_new)
+    
+     elif hash_type == 'rot13':
+        """Implement Rotation by 13 Algorithm """
+
+        # Input cipher offset
+        offset = 13
+
+        # Preserving offset sign before applying modulus
+        offset_sign = '-' if offset < 0 else '+'
+
+        # Removing excess offset
+        offset = abs(offset) % 26
+        if offset_sign == '-':
+            offset *= (-1)
+
+        # Caching ASCII values for range limits
+        v_a, v_A, v_z, v_Z = ord('a'), ord('A'), ord('z'), ord('Z')
+
+        for i in range(len(result)):
+
+            # Storing ASCII value for current element
+            res_i = ord(result[i])
+
+            # Check if within range [a to z, A to z]
+            if v_A <= res_i <= v_Z or v_a <= res_i <= v_z:
+                ul_case = True # Uppercase
+                if v_a <= res_i <= v_z:
+                    ul_case = False # Lowercase
+                res_i += offset
+
+                # On update, check if still within range [a to z, A to z]
+                if v_A <= res_i <= v_Z or v_a <= res_i <= v_z:
+                    result[i] = chr(res_i)
+
+                elif ul_case:
+
+                    # Uppercase
+                    if res_i < v_A:
+                        result[i] = chr(res_i + 25)
+                    else:
+                        result[i] = chr(res_i - 26)
+
+                else:
+
+                    # Lowercase
+                    if res_i < v_a:
+                        result[i] = chr(res_i + 26)
+                    else:
+                        result[i] = chr(res_i - 26)
+            else:
+                pass
+
+        return ''.join(result)
+
+
 
     else:
         """Return original string"""
 
         return ''.join(result)
+
+    
+    
