@@ -8,13 +8,13 @@ CHOICES = [
     'ascii',
     'atbash',
     'binary',
+    'book',
     'caeser',
     'morse',
     'none',
     'polybius-square',
     'reverse',
     'reverse-words',
-    'rot13',
     'vignere'
 ]
 
