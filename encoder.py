@@ -48,7 +48,21 @@ def calc(MSG, hash_type):
 
         result = [str(bin(ord(elem))[2:]) for elem in MSG]
         return ' '.join(result)
-
+    
+    elif hash_type == 'book':
+        """Convert message to key representation"""
+        
+        passage = click.prompt("Enter passage", type=str)
+        w_l=passage.split(' ')
+        key=[]
+        f_l_l=[a[0].lower() for a in w_l]
+        for i in MSG.lower():
+            if i not in f_l_l:
+                raise ValueError("Error: The entered passage does not support the message.")
+            if i in f_l_l:
+                key.append(str(f_l_l.index(i)+1))
+        return ','.join(key)
+                
     elif hash_type == 'caeser':
         """Implement Caeser Cipher Algorithm with offset"""
 
@@ -153,59 +167,6 @@ def calc(MSG, hash_type):
         result = [str(''.join(elem[::-1])) for elem in ''.join(result).split()]
         return ' '.join(result)
 
-    elif hash_type == 'rot13':
-        """Implement Rotation by 13 Algorithm """
-
-        # Input cipher offset
-        offset = 13
-
-        # Preserving offset sign before applying modulus
-        offset_sign = '-' if offset < 0 else '+'
-
-        # Removing excess offset
-        offset = abs(offset) % 26
-        if offset_sign == '-':
-            offset *= (-1)
-
-        # Caching ASCII values for range limits
-        v_a, v_A, v_z, v_Z = ord('a'), ord('A'), ord('z'), ord('Z')
-
-        for i in range(len(result)):
-
-            # Storing ASCII value for current element
-            res_i = ord(result[i])
-
-            # Check if within range [a to z, A to z]
-            if v_A <= res_i <= v_Z or v_a <= res_i <= v_z:
-                ul_case = True # Uppercase
-                if v_a <= res_i <= v_z:
-                    ul_case = False # Lowercase
-                res_i += offset
-
-                # On update, check if still within range [a to z, A to z]
-                if v_A <= res_i <= v_Z or v_a <= res_i <= v_z:
-                    result[i] = chr(res_i)
-
-                elif ul_case:
-
-                    # Uppercase
-                    if res_i < v_A:
-                        result[i] = chr(res_i + 25)
-                    else:
-                        result[i] = chr(res_i - 26)
-
-                else:
-
-                    # Lowercase
-                    if res_i < v_a:
-                        result[i] = chr(res_i + 26)
-                    else:
-                        result[i] = chr(res_i - 26)
-            else:
-                pass
-
-        return ''.join(result)
-    
     elif hash_type == 'vignere':
         """Reverse only words, in-place"""
 
