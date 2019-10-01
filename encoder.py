@@ -53,15 +53,19 @@ def calc(MSG, hash_type):
         """Convert message to key representation"""
         
         passage = click.prompt("Enter passage", type=str)
-        w_l=passage.split(' ')
-        key=[]
-        f_l_l=[a[0].lower() for a in w_l]
+        # Creating a word list from passage
+        w_l = passage.split()
+        key = []
+        # Creating a list of first letters from word list
+        f_l_l = [a[0].lower() for a in w_l]
         for i in MSG.lower():
             if i not in f_l_l:
+                # If passage is not appropriate
                 raise ValueError("Error: The entered passage does not support the message.")
             if i in f_l_l:
                 key.append(str(f_l_l.index(i)+1))
-        return ','.join(key)
+        # Returning key
+        return ' '.join(key)
     
     elif hash_type == 'caeser':
         """Implement Caeser Cipher Algorithm with offset"""
@@ -178,20 +182,16 @@ def calc(MSG, hash_type):
         domain = string.ascii_lowercase
         positions = [domain.find(elem) for elem in key]
         lenp = len(positions)
-
         status = 0
         for elem in MSG:
             if elem == " ":
                 result_new += elem
-
             else:
                 if status >= lenp:
                     status = 0
                 current_pos = positions[status] + domain.find(elem)
-
                 if current_pos > 25:
                   current_pos -= 26
-
                 result_new += domain[current_pos]
                 status += 1
 
