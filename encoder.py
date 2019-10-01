@@ -49,7 +49,20 @@ def calc(MSG, hash_type):
         result = [str(bin(ord(elem))[2:]) for elem in MSG]
         return ' '.join(result)
     
-                
+     elif hash_type == 'book':
+        """Convert message to key representation"""
+        
+        passage = click.prompt("Enter passage", type=str)
+        w_l=passage.split(' ')
+        key=[]
+        f_l_l=[a[0].lower() for a in w_l]
+        for i in MSG.lower():
+            if i not in f_l_l:
+                raise ValueError("Error: The entered passage does not support the message.")
+            if i in f_l_l:
+                key.append(str(f_l_l.index(i)+1))
+        return ','.join(key)
+    
     elif hash_type == 'caeser':
         """Implement Caeser Cipher Algorithm with offset"""
 
