@@ -20,12 +20,12 @@ def calc(MSG, hash_type):
                 result += elem
             else:
                 result += chr((((key1 * (ord(elem) - ord('A'))) + key2) % 26) + ord('A'))
-                
+
         return result
 
     elif hash_type == 'ascii':
         """Convert every character to ASCII representation"""
-        
+
         result = [str(ord(elem)) for elem in MSG]
         return ' '.join(result)
 
@@ -42,12 +42,32 @@ def calc(MSG, hash_type):
                 result += domain[ord(elem) - 65]
 
         return result
-        
+
     elif hash_type == 'binary':
         """Convert every character to binary representation"""
 
         result = [str(bin(ord(elem))[2:]) for elem in MSG]
         return ' '.join(result)
+
+     elif hash_type == 'book':
+        """Convert message to key representation"""
+
+        passage = click.prompt("Enter passage", type=str)
+        # Creating a word list from passage
+        w_l = passage.split()
+        key = []
+
+        # Creating a list of first letters from word list
+        f_l_l = [a[0].lower() for a in w_l]
+        for i in MSG.lower():
+            if i not in f_l_l:
+                # If passage is not appropriate
+                raise ValueError("Error: The entered passage does not support the message.")
+
+            if i in f_l_l:
+                key.append(str(f_l_l.index(i)+1))
+
+        return ' '.join(key)
 
     elif hash_type == 'caeser':
         """Implement Caeser Cipher Algorithm with offset"""
@@ -136,7 +156,7 @@ def calc(MSG, hash_type):
             elif ord(elem) >= ord('J'):
                 if col == 1:
                     row -= 1
-                    col = 6 
+                    col = 6
                 col -= 1
             result += str(row) + str(col)
 

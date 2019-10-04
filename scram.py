@@ -8,6 +8,7 @@ CHOICES = [
     'ascii',
     'atbash',
     'binary',
+    'book',
     'caeser',
     'morse',
     'none',
