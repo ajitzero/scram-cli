@@ -49,7 +49,7 @@ def calc(MSG, hash_type):
         result = [str(bin(ord(elem))[2:]) for elem in MSG]
         return ' '.join(result)
 
-     elif hash_type == 'book':
+    elif hash_type == 'book':
         """Convert message to key representation"""
 
         passage = click.prompt("Enter passage", type=str)
